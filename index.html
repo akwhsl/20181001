@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>매실</title>
+	<style>
+		body { width: 1800px; }
+		#TR1 { width: 600px; height: 600px; margin: auto; margin-top: 0px;
+			background: url('tree1.jpg');}
+		#cLick {width: 300px; height: 300px; margin: auto;
+			background: url('wateringpot.png'); background-size: cover;
+			animation: cloudMove 2s linear alternate paused ;
+			transition: all 1s; }
+
+		#greenV { width: 800px; position: absolute; left: 500px; top: 400px; opacity: 0; }
+
+			@keyframes cloudMove{
+				from{}
+				to{transform: rotateY(360deg);}
+			}
+
+	</style>
+</head>
+<body>
+	<div id="cLick"></div>
+	<div id="TR1"></div>
+	<video id="greenV">
+		<source src="초록매실1.mp4" type="video/mp4">
+	</video>
+	<audio id="waterS">
+		<source src="waterSound.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="sunS">
+		<source src="sunSound.mp3" type="audio/mpeg">
+	</audio>
+	
+	<script type="text/javascript">
+		var growTree = 1;
+
+		cLick.onclick = function() {
+
+			if (growTree == 1) {
+				TR1.style.background = "url('tree2.jpg')";
+				cLick.style.background = "url('cloud.png')";
+				cLick.style.animationPlayState = "running";
+				waterS.play();
+				growTree = 2;
+			} else if (growTree == 2) {
+				TR1.style.background = "url('tree3.jpg')";
+				cLick.style.background = "url('sunShine.gif')";
+				cLick.style.animationPlayState = "running";
+				sunS.play();
+				growTree = 3;
+			} else if (growTree == 3) {
+				greenV.style.opacity = 100;
+				greenV.play();
+			} else if (growTree == 4) {
+				TR1.style.background = "url('tree1.jpg')";
+				cLick.style.background = "url('wateringpot.png')";
+				growTree = 1;
+			} 
+			cLick.style.backgroundSize = "cover";
+		}
+		greenV.onclick = function(){
+			greenV.style.opacity = 0;
+			greenV.pause();
+			greenV.load();
+			growTree = 4;
+		}
+		TR1.onclick = function() {
+			TR1.style.background = "url('tree1.jpg')";
+			cLick.style.background = "url('wateringpot.png')";
+			growTree = 1;
+		}
+	</script>
+</body>
+</html> 
